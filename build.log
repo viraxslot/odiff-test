@@ -1,0 +1,63 @@
+viraxslot@MacBook-Pro odiff-test [master] $ npm run build
+
+> odiff-test@1.0.0 build /Users/viraxslot/Documents/projects/odiff-test
+> docker build . -t odiff-test
+
+Sending build context to Docker daemon  91.57MB
+Step 1/7 : FROM mcr.microsoft.com/playwright:v1.6.2
+ ---> 562ac56d14f9
+Step 2/7 : USER root
+ ---> Using cache
+ ---> eeb585eb97ce
+Step 3/7 : RUN mkdir -p /home/odiff
+ ---> Using cache
+ ---> da2947433959
+Step 4/7 : WORKDIR /home/odiff
+ ---> Using cache
+ ---> 1c5f6e92f5a1
+Step 5/7 : COPY . .
+ ---> 250a1aa30a96
+Step 6/7 : RUN npm i && chmod 777 entrypoint.sh
+ ---> Running in 961dcb04be6f
+npm WARN odiff-test@1.0.0 No repository field.
+
+audited 11 packages in 0.954s
+found 0 vulnerabilities
+
+Removing intermediate container 961dcb04be6f
+ ---> cdd609440ae8
+Step 7/7 : CMD ["/bin/bash", "./entrypoint.sh"]
+ ---> Running in 219af32e9c44
+Removing intermediate container 219af32e9c44
+ ---> c64c731e7077
+Successfully built c64c731e7077
+Successfully tagged odiff-test:latest
+viraxslot@MacBook-Pro odiff-test [master] $ npm run start
+
+> odiff-test@1.0.0 start /Users/viraxslot/Documents/projects/odiff-test
+> docker container run odiff-test
+
+Run entrypoint
+Error: Cannot find module 'odiff-bin'
+Require stack:
+- /home/odiff/src/test.ts
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:831:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:687:27)
+    at Module.require (internal/modules/cjs/loader.js:903:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at Object.<anonymous> (/home/odiff/src/test.ts:1:1)
+    at Module._compile (internal/modules/cjs/loader.js:1015:30)
+    at Module.m._compile (/home/odiff/node_modules/ts-node/src/index.ts:1056:23)
+    at Module._extensions..js (internal/modules/cjs/loader.js:1035:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/odiff/node_modules/ts-node/src/index.ts:1059:12)
+    at Module.load (internal/modules/cjs/loader.js:879:32)
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! odiff-test@1.0.0 start: `docker container run odiff-test`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the odiff-test@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/viraxslot/.npm/_logs/2020-12-10T11_56_14_700Z-debug.log
