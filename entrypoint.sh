@@ -1,2 +1,2 @@
 echo "Run entrypoint"
-./node_modules/ts-node/dist/bin.js src/test.ts
+npx ts-node src/test.ts
